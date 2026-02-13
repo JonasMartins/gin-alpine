@@ -11,3 +11,4 @@
 9. Docker setup
 10. CSRF
 11. Sessions
+12. Redis
