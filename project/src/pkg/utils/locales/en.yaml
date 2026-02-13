@@ -1,0 +1,22 @@
+errors:
+  user:
+    duplicate_email: Já existe um usuário com este e-mail.
+    not_found: Usuário não encontrado.
+    name_required: O campo nome é obrigaório
+    email_required: O campo email é obrigatório
+    valid_email: O campo email deve ser um email válido
+    password_required: O campo senha é obrigatório
+    password_min_length: O campo senha deve ter no mínimo 4 caracteres
+    role_forbidden: "O seu cargo não permite a execução desta ação."
+  update_no_fields: "Nenhum campo para atualizar foi enviado."
+  invalid_id: "ID de usuário inválido."
+  unauthorized: "Não autorizado."
+  forbidden: "Ação não permitida para seu perfil."
+  bad_request: "Requisição inválida."
+  post:
+    not_found: Post não encontrado.
+  internal: "Erro interno do servidor."
+  unxpected: "Erro inesperado, por favor contatar o suporte do sistema."
+  db_conn: "Erro ao conectar-se ao banco de dados"
+messages:
+  welcome: "Bem-vindo, {{.Name}}!"

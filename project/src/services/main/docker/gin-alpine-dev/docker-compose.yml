@@ -1,0 +1,40 @@
+services:
+  db:
+    container_name: gin-alpine-dev-db
+    image: postgres:15.3-alpine3.18
+    restart: always
+    environment:
+      - POSTGRES_DB=gin_alpine_dev
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=ps_secret
+    ports:
+      - "5432:5432"
+    networks:
+      - dev
+
+  redis:
+    container_name: gin-alpine-redis
+    hostname: redis
+    image: redis:alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - dev
+
+  redis-commander:
+    container_name: gin-alpine-redis-commander
+    hostname: redis-commander
+    image: ghcr.io/joeferner/redis-commander:latest
+    restart: always
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    user: redis
+    networks:
+      - dev
+
+networks:
+  dev:
+    driver: bridge

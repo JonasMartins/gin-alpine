@@ -1,0 +1,3 @@
+install tool:
+
+go get -tool github.com/air-verse/air@latest

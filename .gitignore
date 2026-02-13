@@ -1,0 +1,7 @@
+.DS_Store
+project/out/
+project/*.db
+node_modules/
+project/logs/
+*.exe
+.env

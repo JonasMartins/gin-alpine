@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  reverse-proxy:
+    container_name: http-go-clean-main-reverse-proxy
+    image: nginx:latest
+    depends_on:
+      - http-go-clean
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    networks:
+      - dev
+
+  http-go-clean:
+    container_name: http-go-clean-prod
+    build:
+      context: ../../../../../
+      dockerfile: src/services/main/docker/production/Dockerfile
+    ports:
+      - "4000:4000"
+    entrypoint: ["/app/start.sh"]
+    command: ["/app/_main"]
+    networks:
+      - dev
+networks:
+  dev:
+    driver: bridge

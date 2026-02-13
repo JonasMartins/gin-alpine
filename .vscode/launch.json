@@ -1,0 +1,35 @@
+{
+  // Use o IntelliSense para saber mais sobre os atributos possíveis.
+  // Focalizar para exibir as descrições dos atributos existentes.
+  // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run main service",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/project/src/services/main/cmd",
+      "args": [],
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "name": "Run notification service",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/project/src/services/worker/cmd",
+      "args": [],
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "name": "Debug Go Tests",
+      "type": "go",
+      "request": "launch",
+      "mode": "test",
+      "program": "${workspaceFolder}/project/src/internal/usecases",
+      "envFile": "${workspaceFolder}/.env",
+      "args": ["-run", "TestPatternsUsecases"]
+    }
+  ]
+}

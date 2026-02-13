@@ -1,0 +1,154 @@
+version: "3"
+
+dotenv:
+  - .env
+
+#===================##===================##===================##===================##===================##===================##===================##===================#
+#====== ENV ======##====== ENV ======##====== ENV ======##====== ENV ======##====== ENV ======##====== ENV ======##====== ENV ======##====== ENV ======#
+#===================##===================##===================##===================##===================##===================##===================##===================#
+
+vars:
+  BIN_MAIN: _main
+  BIN_NOTIF: _notifications
+  DONE_MESSAGE: "Finished Operation"
+  BIN_MAIN_PKG_CONFIGS: _main_configs
+
+tasks:
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
+
+  #===================##===================##===================##===================##===================##===================##===================##===================#
+  #====== LOCAL ======##====== LOCAL ======##====== LOCAL ======##====== LOCAL ======##====== LOCAL ======##====== LOCAL ======##====== LOCAL ======##====== LOCAL ======#
+  #===================##===================##===================##===================##===================##===================##===================##===================#
+
+  deps:
+    desc: Run go mod tidy
+    cmds:
+      - cd project && go mod tidy
+      - echo "{{.DONE_MESSAGE}}"
+
+  fmt:
+    desc: Format all Go files
+    cmds:
+      - gofmt -w .
+      - go run golang.org/x/tools/cmd/goimports -w .
+
+  lint:
+    desc: "Run Go linters OBS: (MUST INSTALL golangci-lint locally as recommended)"
+    cmds:
+      - cd project && golangci-lint run -c .golangci.yml
+
+  lint:fast:
+    cmds:
+      - cd project && golangci-lint run ./...
+
+  lint:fix:
+    cmds:
+      - cd project && golangci-lint run --fix
+
+  build-main:
+    desc: Build main project executable
+    cmds:
+      - |
+        GOOS=darwin CGO_ENABLED=1 GOARCH=arm64 \
+        go build -o ./project/out/{{.BIN_MAIN}} project/src/services/main/cmd/*.go
+
+  build-notifications:
+    desc: Build notifications project executable
+    cmds:
+      - |
+        GOOS=darwin CGO_ENABLED=1 GOARCH=arm64 \
+        go build -o ./project/out/{{.BIN_NOTIF}} project/src/services/worker/cmd/*.go
+
+  clean:
+    desc: Clean executables
+    cmds:
+      - |
+        find ./project/out -mindepth 1 -delete
+
+  run-main:
+    desc: Run main executable
+    deps:
+      - clean
+      - build:css
+      - build-main
+    cmds:
+      - env $(cat .env) ./project/out/{{.BIN_MAIN}}
+
+  run-notifications:
+    desc: Run notifications executable
+    deps:
+      - build-notifications
+    cmds:
+      - env $(cat .env) ./project/out/{{.BIN_NOTIF}}
+
+
+  test-main-config:
+    desc: Build and run main config tests package
+    cmds:
+      - go test ./project/src/services/main/configs -c -o project/out/{{.BIN_MAIN_PKG_CONFIGS}}
+      - ./project/out/{{.BIN_MAIN_PKG_CONFIGS}} -test.v -test.bench=.
+
+  test:
+    desc: Run all packages tests
+    deps:
+      - clean
+      - test-main-config
+
+  sqlc:
+    desc: Generate SQLC code
+    cmds:
+      - go run github.com/sqlc-dev/sqlc/cmd/sqlc generate -f ./project/sqlc.yaml
+
+  migrate-create:
+    desc: "Create a migration file using goose usage: task migrate-create name=draws_and_patterns"
+    requires:
+      vars:
+        - name
+    cmds:
+      - go run github.com/pressly/goose/v3/cmd/goose create {{.name}} sql
+
+  migrate-up:
+    desc: Run to sync migrations
+    cmds:
+      - go run github.com/pressly/goose/v3/cmd/goose up
+
+  dev:css:
+    desc: Watch tailwind css changes
+    cmd: pnpm run dev:css
+    silent: false
+
+  build:css:
+    desc: Build tailwind css styles
+    cmd: pnpm run build:css
+    silent: false
+
+  go-air:
+    desc: Go Air hot reload
+    cmd: go tool air -c .air.toml
+    silent: false
+
+  dev:
+    desc: Run the project with hot reload in dev mode
+    cmds:
+      - pnpm run dev:css &
+      - go tool air -c .air.toml
+
+
+#===================##===================##===================##===================##===================##===================##===================##===================#
+#====== DOCKER ======##====== DOCKER ======##====== DOCKER ======##====== DOCKER ======##====== DOCKER ======##====== DOCKER ======##====== DOCKER ======##====== DOCKER ======#
+#===================##===================##===================##===================##===================##===================##===================##===================#
+  start-db:
+    desc: Start DB docker 
+    cmd: docker-compose -f ./project/src/services/main/docker/gin-alpine-dev/docker-compose.yml up -d db
+
+  start-redis:
+    desc: Start Redis docker 
+    cmd: docker-compose -f ./project/src/services/main/docker/gin-alpine-dev/docker-compose.yml up -d redis
+
+  start-redis-commander:
+    desc: Start Redis commander docker 
+    cmd: docker-compose -f ./project/src/services/main/docker/gin-alpine-dev/docker-compose.yml up -d redis-commander
+      

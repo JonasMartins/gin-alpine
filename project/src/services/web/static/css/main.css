@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@source "./project/src/services/web/templates";
+@source "./project/src/services/web/static/js";
+
+@import "./components/extra.css";
+
+@theme {
+
+    /* base */
+    --color-background: var(--color-white);     
+    --color-foreground: var(--color-slate-900);        
+
+    --color-card: var(--color-white);
+    --color-card-foreground: var(--color-slate-900);
+
+    /* borders & inputs */
+    --color-border: var(--color-slate-200);      
+    --color-input: var(--color-slate-200); 
+    --color-ring: var(--color-orange-500);        
+
+    /* primary (orange theme) */
+    --color-primary: var(--color-orange-500);      
+    --color-primary-foreground: var(--color-white); 
+
+    /* secondary / muted */
+    --color-secondary: var(--color-slate-100);          
+    --color-secondary-foreground: var(--color-slate-900); 
+
+    --color-muted: var(--color-slate-100);
+    --color-muted-foreground: var(--color-slate-500);
+
+    /* accent */
+    --color-accent: var(--color-orange-100);
+    --color-accent-foreground: var(--color-slate-900);
+
+    /* destructive */
+    --color-destructive: var(--color-red-500);  
+    --color-destructive-foreground: var(--color-white);
+
+
+    /* light theme */
+    --color-surface: var(--color-white);
+    --color-surface-alt: var(--color-neutral-50);
+    --color-on-surface: var(--color-neutral-600);
+    --color-on-surface-strong: var(--color-neutral-900);
+    --color-primary: var(--color-black);
+    --color-on-primary: var(--color-neutral-100);
+    --color-secondary: var(--color-neutral-800);
+    --color-on-secondary: var(--color-white);
+    --color-outline: var(--color-neutral-300);
+    --color-outline-strong: var(--color-neutral-800);
+
+    /* dark theme */
+    --color-surface-dark: var(--color-neutral-950);
+    --color-surface-dark-alt: var(--color-neutral-900);
+    --color-on-surface-dark: var(--color-neutral-300);
+    --color-on-surface-dark-strong: var(--color-white);
+    --color-primary-dark: var(--color-white);
+    --color-on-primary-dark: var(--color-black);
+    --color-secondary-dark: var(--color-neutral-300);
+    --color-on-secondary-dark: var(--color-black);
+    --color-outline-dark: var(--color-neutral-700);
+    --color-outline-dark-strong: var(--color-neutral-300);
+
+    /* shared colors */
+    --color-info: var(--color-sky-500);
+    --color-on-info: var(--color-white);
+    --color-success: var(--color-green-500);
+    --color-on-success: var(--color-white);
+    --color-warning: var(--color-amber-500);
+    --color-on-warning: var(--color-white);
+    --color-danger: var(--color-red-500);
+    --color-on-danger: var(--color-white);
+
+    /* border radius */
+    --radius-radius: var(--radius-sm);
+
+    /* extra project vars*/
+    --color-ball-default: #9ca3af;
+    --color-ball-hover: #6ee7b7;
+    --color-ball-selected: #22c55e;
+    --color-ball-light: #86efac;
+
+    /* ball section colors */
+    --color-ball-high:   #75fa70; /* green (same as your current light green) */
+    --color-ball-medium: #fff89a; /* yellow */
+    --color-ball-low:    #e2e8ec; /* gray */
+    --color-ball-high-hover:   #50e786;
+    --color-ball-medium-hover: #ffc920;
+    --color-ball-low-hover:    #c6d2dd;
+}

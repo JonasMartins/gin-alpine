@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Mega Analyzer</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0fdf4;
+    "
+  >
+    <table
+      role="presentation"
+      cellspacing="0"
+      cellpadding="0"
+      border="0"
+      width="100%"
+      style="background-color: #f0fdf4"
+    >
+      <tr>
+        <td style="padding: 40px 20px">
+          <table
+            role="presentation"
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+            width="100%"
+            style="
+              max-width: 600px;
+              margin: 0 auto;
+              background-color: #ffffff;
+              border-radius: 16px;
+              box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+              overflow: hidden;
+            "
+          >
+            <!-- Header with Logo -->
+            <tr>
+              <td
+                style="
+                  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                  padding: 40px 40px;
+                  text-align: center;
+                "
+              >
+                <img
+                  src="{{ .AssetsBaseURL }}/static/images/logo.png"
+                  alt="Mega Analyzer"
+                  style="max-width: 120px; height: auto; margin-bottom: 16px"
+                />
+                <h1
+                  style="
+                    margin: 0;
+                    color: #ffffff;
+                    font-size: 28px;
+                    font-weight: 700;
+                    letter-spacing: -0.5px;
+                  "
+                >
+                  Welcome to Mega Analyzer!
+                </h1>
+              </td>
+            </tr>
+
+            <!-- Main Content -->
+            <tr>
+              <td style="padding: 40px">
+                <p
+                  style="
+                    margin: 0 0 20px 0;
+                    color: #374151;
+                    font-size: 16px;
+                    line-height: 1.6;
+                  "
+                >
+                  Hello <strong style="color: #059669">{{.Username}}</strong>,
+                </p>
+
+                <p
+                  style="
+                    margin: 0 0 20px 0;
+                    color: #374151;
+                    font-size: 16px;
+                    line-height: 1.6;
+                  "
+                >
+                  We're thrilled to have you join the Mega Analyzer community!
+                  Your account has been successfully created and you're now
+                  ready to explore all the powerful features our platform has to
+                  offer.
+                </p>
+
+                <p
+                  style="
+                    margin: 0 0 24px 0;
+                    color: #374151;
+                    font-size: 16px;
+                    line-height: 1.6;
+                  "
+                >
+                  With Mega Analyzer, you can:
+                </p>
+
+                <!-- Features List -->
+                <table
+                  role="presentation"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  width="100%"
+                  style="margin-bottom: 24px"
+                >
+                  <tr>
+                    <td
+                      style="
+                        padding: 12px 16px;
+                        background-color: #ecfdf5;
+                        border-radius: 8px;
+                        margin-bottom: 8px;
+                      "
+                    >
+                      <table
+                        role="presentation"
+                        cellspacing="0"
+                        cellpadding="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td style="vertical-align: top; padding-right: 12px">
+                            <span
+                              style="
+                                display: inline-block;
+                                width: 24px;
+                                height: 24px;
+                                background-color: #10b981;
+                                border-radius: 50%;
+                                text-align: center;
+                                line-height: 24px;
+                                color: #ffffff;
+                                font-size: 14px;
+                              "
+                              >✓</span
+                            >
+                          </td>
+                          <td style="color: #065f46; font-size: 15px">
+                            Analyze lottery patterns and trends
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 8px"></td>
+                  </tr>
+                  <tr>
+                    <td
+                      style="
+                        padding: 12px 16px;
+                        background-color: #ecfdf5;
+                        border-radius: 8px;
+                      "
+                    >
+                      <table
+                        role="presentation"
+                        cellspacing="0"
+                        cellpadding="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td style="vertical-align: top; padding-right: 12px">
+                            <span
+                              style="
+                                display: inline-block;
+                                width: 24px;
+                                height: 24px;
+                                background-color: #10b981;
+                                border-radius: 50%;
+                                text-align: center;
+                                line-height: 24px;
+                                color: #ffffff;
+                                font-size: 14px;
+                              "
+                              >✓</span
+                            >
+                          </td>
+                          <td style="color: #065f46; font-size: 15px">
+                            Track your favorite numbers and statistics
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="height: 8px"></td>
+                  </tr>
+                  <tr>
+                    <td
+                      style="
+                        padding: 12px 16px;
+                        background-color: #ecfdf5;
+                        border-radius: 8px;
+                      "
+                    >
+                      <table
+                        role="presentation"
+                        cellspacing="0"
+                        cellpadding="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td style="vertical-align: top; padding-right: 12px">
+                            <span
+                              style="
+                                display: inline-block;
+                                width: 24px;
+                                height: 24px;
+                                background-color: #10b981;
+                                border-radius: 50%;
+                                text-align: center;
+                                line-height: 24px;
+                                color: #ffffff;
+                                font-size: 14px;
+                              "
+                              >✓</span
+                            >
+                          </td>
+                          <td style="color: #065f46; font-size: 15px">
+                            Access detailed reports and insights
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Temporary Password Section -->
+                <table
+                  role="presentation"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  width="100%"
+                  style="
+                    margin: 24px 0;
+                    background: linear-gradient(
+                      135deg,
+                      #fef3c7 0%,
+                      #fde68a 100%
+                    );
+                    border-radius: 12px;
+                    border: 2px solid #f59e0b;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 20px 24px">
+                      <table
+                        role="presentation"
+                        cellspacing="0"
+                        cellpadding="0"
+                        border="0"
+                        width="100%"
+                      >
+                        <tr>
+                          <td style="text-align: center">
+                            <span
+                              style="
+                                display: inline-block;
+                                width: 32px;
+                                height: 32px;
+                                background-color: #f59e0b;
+                                border-radius: 50%;
+                                text-align: center;
+                                line-height: 32px;
+                                color: #ffffff;
+                                font-size: 18px;
+                                margin-bottom: 12px;
+                              "
+                              >🔐</span
+                            >
+                            <h3
+                              style="
+                                margin: 8px 0 12px 0;
+                                color: #92400e;
+                                font-size: 18px;
+                                font-weight: 700;
+                              "
+                            >
+                              Your Temporary Password
+                            </h3>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="text-align: center">
+                            <p
+                              style="
+                                margin: 0 0 12px 0;
+                                color: #78350f;
+                                font-size: 14px;
+                                line-height: 1.5;
+                              "
+                            >
+                              Use the password below to log in to your account:
+                            </p>
+                            <div
+                              style="
+                                display: inline-block;
+                                padding: 12px 24px;
+                                background-color: #ffffff;
+                                border: 2px dashed #d97706;
+                                border-radius: 8px;
+                                margin: 8px 0;
+                              "
+                            >
+                              <code
+                                style="
+                                  font-family: 'Courier New', monospace;
+                                  font-size: 20px;
+                                  font-weight: 700;
+                                  color: #059669;
+                                  letter-spacing: 2px;
+                                "
+                                >{{.Password}}</code
+                              >
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Change Password Warning -->
+                <table
+                  role="presentation"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  width="100%"
+                  style="
+                    margin-bottom: 24px;
+                    background-color: #fef2f2;
+                    border-radius: 8px;
+                    border-left: 4px solid #ef4444;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 16px 20px">
+                      <p
+                        style="
+                          margin: 0 0 8px 0;
+                          color: #991b1b;
+                          font-size: 15px;
+                          font-weight: 600;
+                        "
+                      >
+                        ⚠️ Important: Change Your Password
+                      </p>
+                      <p
+                        style="
+                          margin: 0;
+                          color: #7f1d1d;
+                          font-size: 14px;
+                          line-height: 1.5;
+                        "
+                      >
+                        For your security, please change your password as soon
+                        as you log in. Go to:
+                        <strong>Settings → Edit My Profile</strong> and set a
+                        new password of your choice.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- CTA Button -->
+                <table
+                  role="presentation"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  width="100%"
+                  style="margin: 32px 0"
+                >
+                  <tr>
+                    <td style="text-align: center">
+                      <a
+                        href="{{.LoginURL}}"
+                        style="
+                          display: inline-block;
+                          padding: 16px 40px;
+                          background: linear-gradient(
+                            135deg,
+                            #10b981 0%,
+                            #059669 100%
+                          );
+                          color: #ffffff;
+                          text-decoration: none;
+                          font-size: 16px;
+                          font-weight: 600;
+                          border-radius: 12px;
+                          box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.4);
+                        "
+                      >
+                        Log in and change password
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+
+                <p
+                  style="
+                    margin: 0 0 20px 0;
+                    color: #6b7280;
+                    font-size: 14px;
+                    line-height: 1.6;
+                  "
+                >
+                  If you have any questions or need assistance, our support team
+                  is always here to help. Simply reply to this email or visit
+                  our help center.
+                </p>
+
+                <p
+                  style="
+                    margin: 0;
+                    color: #374151;
+                    font-size: 16px;
+                    line-height: 1.6;
+                  "
+                >
+                  Best regards,<br />
+                  <strong style="color: #059669">The Mega Analyzer Team</strong>
+                </p>
+              </td>
+            </tr>
+
+            <!-- Divider -->
+            <tr>
+              <td style="padding: 0 40px">
+                <hr
+                  style="border: none; border-top: 1px solid #d1fae5; margin: 0"
+                />
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td style="padding: 24px 40px; text-align: center">
+                <p style="margin: 0 0 12px 0; color: #9ca3af; font-size: 13px">
+                  © 2026 Mega Analyzer. All rights reserved.
+                </p>
+                <p style="margin: 0; color: #9ca3af; font-size: 12px">
+                  You received this email because you signed up for Mega
+                  Analyzer.<br />
+                  <a
+                    href="{{.UnsubscribeURL}}"
+                    style="color: #10b981; text-decoration: underline"
+                    >Unsubscribe</a
+                  >
+                  from these emails.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

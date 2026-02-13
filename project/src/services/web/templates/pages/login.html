@@ -1,0 +1,204 @@
+{{ define "content" }}
+<div
+  x-data="loginForm()"
+  class="w-full max-w-sm space-y-6 rounded-2xl border border-orange-100 bg-white p-8 shadow-lg shadow-orange-500/10"
+>
+  <div class="space-y-1 text-center">
+    <h2 class="text-xl font-semibold tracking-tight text-gray-900">Log in</h2>
+    <p class="text-sm text-gray-500">Enter your credentials to continue.</p>
+  </div>
+
+  {{ if .error }}
+  <div
+    class="flex items-center gap-3 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700"
+  >
+    <svg
+      class="h-5 w-5 flex-shrink-0 text-red-500"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+    <span
+      >{{ if .error.Message }}{{ .error.Message }}{{ else }}Invalid {{
+      .error.Field }}{{ end }}</span
+    >
+  </div>
+  {{ end }}
+
+  <form method="POST" action="/login" class="space-y-4">
+    <div class="space-y-1">
+      <label class="text-sm font-medium text-gray-700">Email</label>
+      <div class="relative">
+        <div
+          class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+        >
+          <svg
+            class="h-5 w-5 text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            />
+          </svg>
+        </div>
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="your@email.com"
+          class="w-full rounded-lg border py-2.5 pl-10 pr-3 text-sm transition-all duration-200 focus:outline-none focus:ring-2"
+          x-model="email"
+          x-on:blur="touched.email = true"
+          :class="touched.email && !emailValid
+                        ? 'border-red-300 bg-red-50 focus:border-red-500 focus:ring-red-500/20'
+                        : 'border-orange-200 bg-white focus:border-orange-500 focus:ring-orange-500/20'"
+        />
+      </div>
+      <p
+        x-show="touched.email && !emailValid"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-1"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        class="mt-1 flex items-center gap-1 text-xs text-red-600"
+      >
+        <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        Enter a valid email address
+      </p>
+    </div>
+
+    <div class="space-y-1">
+      <label class="text-sm font-medium text-gray-700">Password</label>
+      <div class="relative">
+        <div
+          class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+        >
+          <svg
+            class="h-5 w-5 text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+            />
+          </svg>
+        </div>
+        <input
+          type="password"
+          name="password"
+          required
+          placeholder="••••••••"
+          class="w-full rounded-lg border py-2.5 pl-10 pr-3 text-sm transition-all duration-200 focus:outline-none focus:ring-2"
+          x-model="password"
+          x-on:blur="touched.password = true"
+          :class="touched.password && !passwordValid
+                        ? 'border-red-300 bg-red-50 focus:border-red-500 focus:ring-red-500/20'
+                        : 'border-orange-200 bg-white focus:border-orange-500 focus:ring-orange-500/20'"
+        />
+      </div>
+      <p
+        x-show="touched.password && !passwordValid"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-1"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        class="mt-1 flex items-center gap-1 text-xs text-red-600"
+      >
+        <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        Password must be at least 6 characters
+      </p>
+    </div>
+
+    <input type="hidden" name="_csrf" value="{{ .csrf }}" />
+
+    <button
+      type="submit"
+      class="w-full rounded-lg bg-orange-600 py-2.5 text-sm font-medium text-white shadow-sm hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
+      :disabled="!formValid"
+    >
+      <span class="flex items-center justify-center gap-2">
+        <svg
+          class="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+          />
+        </svg>
+        Sign in
+      </span>
+    </button>
+  </form>
+
+  <div class="pt-2 text-center">
+    <p class="text-xs text-gray-500">
+      Powered by <span class="font-medium text-orange-600">Gin alpine</span>
+    </p>
+  </div>
+</div>
+
+<script>
+  function loginForm() {
+    return {
+      email: "",
+      password: "",
+      touched: {
+        email: false,
+        password: false,
+      },
+
+      get emailValid() {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
+      },
+
+      get passwordValid() {
+        return this.password.length >= 6;
+      },
+
+      get formValid() {
+        return this.emailValid && this.passwordValid;
+      },
+
+      submit(event) {
+        this.touched.email = true;
+        this.touched.password = true;
+
+        if (!this.formValid) return;
+
+        event.target.submit();
+      },
+    };
+  }
+</script>
+{{ end }}

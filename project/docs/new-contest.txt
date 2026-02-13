@@ -1,0 +1,13 @@
+to add a new contest:
+
+draws-usecases_test
+
+1 -> should insert the newest contest
+
+balls-usecases_test
+
+2 -> should rank all balls sections
+
+version-usecases_test
+
+3 -> should insert last version into db (inserts via DB and cache, both needed to be reliable)

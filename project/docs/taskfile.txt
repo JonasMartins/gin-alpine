@@ -1,0 +1,14 @@
+
+01. example task taking arguments:
+
+task migrate-create name=draws_and_patterns
+
+
+
+02. this way it will use a different env
+
+dotenv:
+  - .env.{{.ENV | default "dev"}}
+
+task migrate ENV=dev
+task migrate ENV=prod

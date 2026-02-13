@@ -1,0 +1,18 @@
+
+1. Criar um .env com o conteúdo de .env.example
+
+2. instalar task
+
+3. instalar go
+
+4. task deps
+
+5. instalar air: go get -tool github.com/air-verse/air@latest
+
+6. db e redis setup:
+
+    6.1 task start-db
+    6.2 task start-redis
+    6.3 task migrate-up
+
+7. task dev

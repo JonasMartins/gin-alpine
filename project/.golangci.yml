@@ -1,0 +1,94 @@
+# Defines the configuration version.
+# The only possible value is "2".
+# source: https://golangci-lint.run/docs/configuration/file/
+version: "2"
+
+run:
+  timeout: 5m
+  relative-path-mode: gomod
+
+linters:
+  enable:
+    - govet
+    - staticcheck
+    - errcheck
+    - ineffassign
+    - unused
+    - depguard
+  settings:
+    depguard:
+      rules:
+        # =====================
+        # DOMAIN
+        # =====================
+        domain:
+          files:
+            - project/src/internal/domain/**/*.go
+          deny:
+            - pkg: project/src/internal/infra
+            - pkg: project/src/internal/usecases
+            - pkg: project/src/services
+          allow:
+            - project/src/internal/sqlc
+            - project/src/pkg
+
+        # =====================
+        # USECASES
+        # =====================
+        usecases:
+          files:
+            - project/src/internal/usecases/**/*.go
+          deny:
+            - pkg: project/src/internal/infra
+            - pkg: project/src/services
+          allow:
+            - project/src/internal/domain
+            - project/src/internal/sqlc
+            - project/src/pkg
+
+        # =====================
+        # INFRA
+        # =====================
+        infra:
+          files:
+            - project/src/internal/infra/**/*.go
+          deny:
+            - pkg: project/src/internal/usecases
+            - pkg: project/src/services
+          allow:
+            - project/src/internal/domain
+            - project/src/internal/sqlc
+            - project/src/pkg
+
+        # =====================
+        # SQLC (must stay pure)
+        # =====================
+        sqlc:
+          files:
+            - project/src/internal/sqlc/**/*.go
+          deny:
+            - pkg: project/src/internal
+            - pkg: project/src/services
+            - pkg: project/src/pkg
+
+        # =====================
+        # PKG (helpers only)
+        # =====================
+        pkg:
+          files:
+            - project/src/pkg/**/*.go
+          deny:
+            - pkg: project/src/internal
+            - pkg: project/src/services
+
+        # =====================
+        # SERVICES (main / worker)
+        # =====================
+        services:
+          files:
+            - project/src/services/**/*.go
+          allow:
+            - project/src/internal
+            - project/src/pkg
+issues:
+  fix: true

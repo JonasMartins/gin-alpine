@@ -1,0 +1,19 @@
+enter .git/hooks and create a file: 'pre-commit' no extension
+
+add this content and chmod it:
+
+#!/bin/sh
+set -e
+
+task fmt
+
+git diff --quiet || {
+  echo "❌ Go files were reformatted. Please commit again."
+  exit 1
+}
+
+them:
+
+chmod +x .git/hooks/pre-commit
+
+it will format before commit

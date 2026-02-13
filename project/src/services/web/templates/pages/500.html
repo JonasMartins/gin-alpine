@@ -1,0 +1,53 @@
+{{ define "content" }}
+<body
+  class="bg-gradient-to-br from-orange-50 to-orange-100 min-h-screen flex items-center justify-center p-4"
+>
+  <div class="text-center">
+    <!-- Icon -->
+    <div class="mb-8">
+      <div
+        class="inline-flex items-center justify-center w-32 h-32 rounded-full bg-orange-100 border-4 border-orange-200"
+      >
+        <i class="fas fa-exclamation-triangle text-6xl text-orange-400"></i>
+      </div>
+    </div>
+
+    <!-- Error Code -->
+    <h1 class="text-8xl font-bold text-orange-600 mb-4">500</h1>
+
+    <!-- Title -->
+    <h2 class="text-2xl font-semibold text-orange-800 mb-2">
+      Erro interno do servidor
+    </h2>
+
+    <!-- Description -->
+    <p class="text-orange-600 mb-8 max-w-md mx-auto">
+      Desculpe, ocorreu um erro inesperado em nosso servidor. Nossa equipe já
+      foi notificada e está trabalhando para resolver o problema.
+    </p>
+
+    <!-- Home Button -->
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-lg shadow-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-200 transform hover:scale-105"
+    >
+      <i class="fas fa-home"></i>
+      Voltar para a página inicial
+    </a>
+
+    <!-- Retry Button -->
+    <button
+      onclick="location.reload()"
+      class="ml-4 inline-flex items-center gap-2 px-6 py-3 bg-white text-orange-600 font-semibold rounded-lg shadow-lg border-2 border-orange-200 hover:border-orange-400 hover:bg-orange-50 transition-all duration-200"
+    >
+      <i class="fas fa-redo"></i>
+      Tentar novamente
+    </button>
+
+    <!-- Additional Info -->
+    <p class="mt-8 text-sm text-orange-500">
+      Se o problema persistir, entre em contato com o suporte.
+    </p>
+  </div>
+</body>
+{{ end }}

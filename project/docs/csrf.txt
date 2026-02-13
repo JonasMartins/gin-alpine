@@ -1,0 +1,7 @@
+If you re-render a form after a POST error, you MUST re-inject a fresh CSRF token.
+
+ALWAYS do this when returning the login page after an error
+c.HTML(code, "pages/login.html", gin.H{
+    "errors": httpErr,
+    "csrf":   csrf.GetToken(c),
+})

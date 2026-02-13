@@ -1,0 +1,8 @@
+list:
+ls $(go env GOPATH)/bin
+
+uninstall:
+rm $(go env GOPATH)/bin/goose
+
+if go mod tidy breaks some packages ( once in a while to do this )
+go clean -modcache

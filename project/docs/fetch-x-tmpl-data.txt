@@ -1,0 +1,23 @@
+How to decide? (Rule of thumb)
+
+Ask these questions in order:
+
+1️⃣ Is the data needed to render the page initially?
+
+➡️ Yes → Template render
+➡️ No → Fetch
+
+2️⃣ Does the data change often without a full reload?
+
+➡️ Yes → Fetch
+➡️ No → Template render
+
+3️⃣ Is this data reused by other clients (mobile, SPA, CLI)?
+
+➡️ Yes → Fetch (API-first)
+➡️ No → Template render
+
+4️⃣ Is it simple and cheap to compute?
+
+➡️ Yes → Template render
+➡️ No / heavy / slow → Consider fetch + caching
