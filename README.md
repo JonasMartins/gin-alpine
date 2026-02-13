@@ -1,4 +1,4 @@
-## Gin Alpine
+## Gin Alpine Full Stack
 
 1. Gin
 2. Postgres
@@ -9,3 +9,5 @@
 7. AlpineJS
 8. TailwindCSS
 9. Docker setup
+10. CSRF
+11. Sessions
